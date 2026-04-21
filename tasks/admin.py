@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Project, ProjectMembership, Task
+from .models import Project, ProjectMembership, Task, TaskComment
 
 admin.site.register(Project)
 admin.site.register(ProjectMembership)
 admin.site.register(Task)
+admin.site.register(TaskComment)
