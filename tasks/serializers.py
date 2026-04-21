@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Project, ProjectMembership, Task, Comment
+from .models import Project, ProjectMembership, Task, TaskComment
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +19,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class TaskCommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment
+        model = TaskComment
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
