@@ -147,4 +147,14 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Alpha Soft Task Tracker API',
     'DESCRIPTION': 'API для управления проектами, задачами и комментариями',
     'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SECURITY': [{'BearerAuth': []}],
+    'COMPONENT_SPLIT_REQUEST': True,
+    'SECURITY_SCHEMES': {
+        'BearerAuth': {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        }
+    },
 }
