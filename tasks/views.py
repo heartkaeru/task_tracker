@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django.contrib.auth.models import User
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Project, ProjectMembership, Task, TaskComment
 from .serializers import (
     UserSerializer,
@@ -20,6 +21,9 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['status', 'priority', 'assignee', 'project', 'deadline']
 
     def get_queryset(self):
         return Task.objects.filter(
