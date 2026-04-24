@@ -11,16 +11,28 @@ from .serializers import (
 )
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+    def get_queryset(self):
+        return Project.objects.filter(
+            participants=self.request.user
+        )
+
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
+    def get_queryset(self):
+        return Task.objects.filter(
+            project__participants=self.request.user
+        )
+
 class TaskCommentViewSet(viewsets.ModelViewSet):
-    queryset = TaskComment.objects.all()
     serializer_class = TaskCommentSerializer
+
+    def get_queryset(self):
+        return TaskComment.objects.filter(
+            task__project__participants=self.request.user
+        )
 
 class ProjectMembershipViewSet(viewsets.ModelViewSet):
     queryset = ProjectMembership.objects.all()
